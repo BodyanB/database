@@ -45,7 +45,7 @@ namespace database
             dataGridView1.AutoGenerateColumns = true;
             bindingSource.DataSource = dataset.Tables[0];
             dataGridView1.DataSource = bindingSource;
-            MessageBox.Show("Load");
+            MessageBox.Show("Load my project");
           
 
         }
