@@ -64,6 +64,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>testdbDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="testdbDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>testdbDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +111,17 @@
     </None>
     <None Include="testdbDataSet1.xss">
       <DependentUpon>testdbDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="testdbDataSet2.xsc">
+      <DependentUpon>testdbDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="testdbDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>testdbDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="testdbDataSet2.xss">
+      <DependentUpon>testdbDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

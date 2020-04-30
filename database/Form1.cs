@@ -13,7 +13,7 @@ namespace database
     public partial class Form1 : Form
     {
         public static string conStr = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\testdb.mdb;Persist S" +
-           "ecurity Info=True;Jet OLEDB:Database Password=12345";
+            "ecurity Info=True;Jet OLEDB:Database Password=12345";
         private OleDbConnection conn;
         private BindingSource bindingSource = new BindingSource();
 
@@ -31,11 +31,14 @@ namespace database
             conn.Open();
 
             //var command = conn.CreateCommand();
-           // command.CommandText = "INSERT INTO Peoples (id, NameN, SurName, DateBerth, Sex)" + " Values ('0', 'Bogdan', 'Bieliaiev', '20', 'M')";
+            // command.CommandText = "INSERT INTO Peoples (id, NameN, SurName, DateBerth, Sex)" + " Values ('0', 'Bogdan', 'Bieliaiev', '20', 'M')";
 
             // OleDbCommand command = new OleDbCommand("INSERT INTO Peoples (NameN, SurName, DateBerth, Sex)" + " Values ('Bohdan', 'Bieliaev', '20', 'M')");
-            OleDbCommand command = new OleDbCommand("SELECT * FROM Peoples");
-            command.Connection = conn;
+            //SELECT * FROM Peoples
+            //"INSERT INTO Peoples (id, NameN, SurName, DateBerth, Sex)" + " Values ('2', 'Andrey', 'Mahonin', '1', 'M')");
+            string query = "SELECT * FROM Peoples";
+            OleDbCommand command = new OleDbCommand(query, conn);
+            textBox1.Text = command.ExecuteScalar().ToString();
 
             OleDbDataAdapter adapter = new OleDbDataAdapter(command);
             DataSet dataset = new DataSet();
@@ -45,7 +48,7 @@ namespace database
             dataGridView1.AutoGenerateColumns = true;
             bindingSource.DataSource = dataset.Tables[0];
             dataGridView1.DataSource = bindingSource;
-            MessageBox.Show("Load my project");
+            
           
 
         }
@@ -53,6 +56,19 @@ namespace database
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             conn.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT NameN, SurName, Sex FROM Peoples ORDER BY id";
+            OleDbCommand command = new OleDbCommand(query, conn);
+            OleDbDataReader reader = command.ExecuteReader();
+            listBox1.Items.Clear();
+            while(reader.Read())
+            {
+                listBox1.Items.Add(reader[0].ToString() + " " + reader[1].ToString() + " " + reader[2].ToString() + " ");  
+            }
+            reader.Close();
         }
     }
 }
